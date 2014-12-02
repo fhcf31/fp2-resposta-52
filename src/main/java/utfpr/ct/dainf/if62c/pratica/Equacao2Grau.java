@@ -8,45 +8,67 @@ package utfpr.ct.dainf.if62c.pratica;
 /**
  *
  * @author Fernando
- * @param <Number>
+ * @param <T>
  */
-public class Equacao2Grau<Number> {
-    private Number a;
-    private Number b;
-    private Number c;
+public class Equacao2Grau<T extends Number> {
+    private T a;
+    private T b;
+    private T c;
     
-    public Equacao2Grau(Number a,Number b, Number c) {
-        if(a.equals(0) || b.equals(0) || c.equals(0)){
-            throw new NumberFormatException();
+//    private Number teste;
+//    private double testeDouble;
+//    
+//    testeDouble = (double) teste;
+    
+    public Equacao2Grau(T a,T b, T c) {
+        if(a.equals(0)){
+            throw new NumberFormatException("O coeficiente a não pode ser 0");
         }
-        
         this.a = a;
         this.b = b;
         this.c = c;
 }
     
-    public Number getA(){
+    public T getA(){
         return a;
     }
-    public Number getB(){
+    public T getB(){
         return b;
     }
-    public Number getC(){
+    public T getC(){
         return c;
     }
     
-    public void setA(Number a){
+    public void setA(T a){
+        if(a.equals(0)){
+            throw new NumberFormatException("O coeficiente a não pode ser 0");
+        }
         this.a = a;
     }
-    public void setB(Number b){
+    public void setB(T b){
         this.b = b;
     }
-    public void setC(Number c){
+    public void setC(T c){
         this.c = c;
     }
     
-//    public double getRaiz1(Equacao2Grau eq){
-//        
-//    }
+    public double getRaiz1(){
+        double delta = b.doubleValue()*b.doubleValue() - 4*a.doubleValue()*c.doubleValue();
+        
+        if(delta < 0){
+            throw new NumberFormatException(String.format("A equação (%.1f)x^2+(%.1f)x+(%.1f) não possue raizes reais",
+                    a.doubleValue(),b.doubleValue(),c.doubleValue()));
+        }
+        return (-1)*b.doubleValue() + Math.sqrt(delta);
+    }
     
+    public double getRaiz2(){
+        double delta = b.doubleValue()*b.doubleValue() - 4*a.doubleValue()*c.doubleValue();
+        
+        if(delta < 0){
+            throw new NumberFormatException(String.format("A equação (%.1f)x^2+(%.1f)x+(%.1f) não possue raizes reais",
+                    a.doubleValue(),b.doubleValue(),c.doubleValue()));
+        }
+        return (-1)*b.doubleValue() - Math.sqrt(delta);
+    }
 }
