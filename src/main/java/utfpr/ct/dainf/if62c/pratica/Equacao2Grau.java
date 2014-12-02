@@ -30,6 +30,9 @@ public class Equacao2Grau<T extends Number> {
 }
     
     public T getA(){
+        if(a.equals(0)){
+            throw new NumberFormatException("O coeficiente a não pode ser 0");
+        }
         return a;
     }
     public T getB(){
