@@ -22,7 +22,7 @@ public class Equacao2Grau<T extends Number> {
     
     public Equacao2Grau(T a,T b, T c) {
         if(a.equals(0)){
-            throw new NumberFormatException("O coeficiente a não pode ser 0");
+            throw new RuntimeException("O coeficiente a não pode ser 0");
         }
         this.a = a;
         this.b = b;
@@ -31,7 +31,7 @@ public class Equacao2Grau<T extends Number> {
     
     public T getA(){
         if(a.equals(0)){
-            throw new NumberFormatException("O coeficiente a não pode ser 0");
+            throw new RuntimeException("O coeficiente a não pode ser 0");
         }
         return a;
     }
@@ -44,7 +44,7 @@ public class Equacao2Grau<T extends Number> {
     
     public void setA(T a){
         if(a.equals(0)){
-            throw new NumberFormatException("O coeficiente a não pode ser 0");
+            throw new RuntimeException("O coeficiente a não pode ser 0");
         }
         this.a = a;
     }
@@ -59,19 +59,19 @@ public class Equacao2Grau<T extends Number> {
         double delta = b.doubleValue()*b.doubleValue() - 4*a.doubleValue()*c.doubleValue();
         
         if(delta < 0){
-            throw new NumberFormatException(String.format("A equação (%.1f)x^2+(%.1f)x+(%.1f) não possue raizes reais",
+            throw new RuntimeException(String.format("A equação (%.1f)x^2+(%.1f)x+(%.1f) não possue raizes reais",
                     a.doubleValue(),b.doubleValue(),c.doubleValue()));
         }
-        return (-1)*b.doubleValue() + Math.sqrt(delta);
+        return ((-1)*b.doubleValue() + Math.sqrt(delta))/(2*a.doubleValue());
     }
     
     public double getRaiz2(){
         double delta = b.doubleValue()*b.doubleValue() - 4*a.doubleValue()*c.doubleValue();
         
         if(delta < 0){
-            throw new NumberFormatException(String.format("A equação (%.1f)x^2+(%.1f)x+(%.1f) não possue raizes reais",
+            throw new RuntimeException(String.format("A equação (%.1f)x^2+(%.1f)x+(%.1f) não possue raizes reais",
                     a.doubleValue(),b.doubleValue(),c.doubleValue()));
         }
-        return (-1)*b.doubleValue() - Math.sqrt(delta);
+        return ((-1)*b.doubleValue() - Math.sqrt(delta))/(2*a.doubleValue());
     }
 }
